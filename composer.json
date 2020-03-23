@@ -1,0 +1,17 @@
+{
+  "require": {
+    "php": ">=7.3.0",
+    "nategood/commando": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Life\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "php vendor/bin/phpunit tests"
+  }
+}
