@@ -13,5 +13,10 @@
   },
   "scripts": {
     "test": "php vendor/bin/phpunit tests"
+  },
+  "config": {
+    "platform": {
+
+    }
   }
 }
