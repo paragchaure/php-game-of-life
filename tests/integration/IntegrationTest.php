@@ -1,8 +1,9 @@
 <?php
 
-use Life\Game;
+use Life\RunGameCommand;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Tester\CommandTester;
 
 class IntegrationTest extends TestCase
 {
@@ -25,11 +26,14 @@ class IntegrationTest extends TestCase
      */
     public function testGame(string $inputFile, string $expectedOutputFile): void
     {
-        $game = new Game();
-        $inputFile = $this->getFilePath($inputFile);
-        $outputFile = $this->getFilePath(self::OUTPUT_FILE);
+        $commandTester = new CommandTester(new RunGameCommand());
 
-        $game->run($inputFile, $outputFile);
+        $commandTester->execute(
+            [
+                '--input' => $inputFile,
+                '--output' => self::OUTPUT_FILE,
+            ]
+        );
 
         $output = $this->loadXmlForComparison(self::OUTPUT_FILE);
         $expected = $this->loadXmlForComparison($expectedOutputFile);
@@ -39,16 +43,15 @@ class IntegrationTest extends TestCase
     public function getInputAndExpectedOutputFiles(): array
     {
         return [
-            ['input1.xml', 'expected-output1.xml'],
-            ['input2.xml', 'expected-output2.xml'],
-            ['input3.xml', 'expected-output2.xml'],
-            ['input4.xml', 'expected-output2.xml'],
-
-            ['input5.xml', 'expected-output5.xml'],
-            ['input6.xml', 'expected-output6.xml'],
-            ['input7.xml', 'expected-output5.xml'],
-            ['input8.xml', 'expected-output6.xml'],
-            ['input9.xml', 'expected-output5.xml'],
+            [__DIR__ . '/files/input1.xml', __DIR__ . '/files/expected-output1.xml'],
+            [__DIR__ . '/files/input2.xml', __DIR__ . '/files/expected-output2.xml'],
+            [__DIR__ . '/files/input3.xml', __DIR__ . '/files/expected-output2.xml'],
+            [__DIR__ . '/files/input4.xml', __DIR__ . '/files/expected-output2.xml'],
+            [__DIR__ . '/files/input5.xml', __DIR__ . '/files/expected-output5.xml'],
+            [__DIR__ . '/files/input6.xml', __DIR__ . '/files/expected-output6.xml'],
+            [__DIR__ . '/files/input7.xml', __DIR__ . '/files/expected-output5.xml'],
+            [__DIR__ . '/files/input8.xml', __DIR__ . '/files/expected-output6.xml'],
+            [__DIR__ . '/files/input9.xml', __DIR__ . '/files/expected-output5.xml'],
         ];
     }
 

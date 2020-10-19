@@ -1,7 +1,9 @@
 {
   "require": {
+    "ext-simplexml": "*",
+    "ext-dom": "*",
     "php": ">=7.3.0",
-    "nategood/commando": "*"
+    "symfony/console": "^5.1"
   },
   "require-dev": {
     "phpunit/phpunit": "^8.5"
