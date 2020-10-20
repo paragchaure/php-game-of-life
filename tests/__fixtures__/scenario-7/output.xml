@@ -2,17 +2,11 @@
 <life>
     <world>
         <cells>4</cells>
-        <species>2</species>
-        <iterations>1</iterations>
+        <species>1</species>
     </world>
     <organisms>
         <organism>
-            <x_pos>0</x_pos>
-            <y_pos>0</y_pos>
-            <species>0</species>
-        </organism>
-        <organism>
-            <x_pos>1</x_pos>
+            <x_pos>2</x_pos>
             <y_pos>0</y_pos>
             <species>0</species>
         </organism>
@@ -21,21 +15,25 @@
             <y_pos>1</y_pos>
             <species>0</species>
         </organism>
-
         <organism>
             <x_pos>3</x_pos>
             <y_pos>1</y_pos>
-            <species>1</species>
+            <species>0</species>
+        </organism>
+        <organism>
+            <x_pos>0</x_pos>
+            <y_pos>2</y_pos>
+            <species>0</species>
         </organism>
         <organism>
             <x_pos>3</x_pos>
             <y_pos>2</y_pos>
-            <species>1</species>
+            <species>0</species>
         </organism>
         <organism>
-            <x_pos>3</x_pos>
+            <x_pos>1</x_pos>
             <y_pos>3</y_pos>
-            <species>1</species>
+            <species>0</species>
         </organism>
     </organisms>
 </life>

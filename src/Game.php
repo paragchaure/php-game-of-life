@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Life;
 
 class Game
 {
-
     /** @var int */
     private $iterationsCount;
 
@@ -111,5 +110,4 @@ class Game
 
         return null;
     }
-
 }

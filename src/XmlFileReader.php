@@ -1,12 +1,14 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Life;
 
+use SimpleXMLElement;
+
 class XmlFileReader
 {
-
     /** @var string */
     private $filePath;
+
 
     public function __construct(string $filePath)
     {
@@ -38,14 +40,14 @@ class XmlFileReader
         return [$worldSize, $speciesCount, $cells, $iterationsCount];
     }
 
-    private function loadXmlFile()
+    private function loadXmlFile(): SimpleXMLElement
     {
         if (!file_exists($this->filePath)) {
             throw new InvalidInputException("Unable to read nonexistent file");
         }
         try {
             libxml_use_internal_errors(true);
-            $life = simplexml_load_file($this->filePath);
+            $life = simplexml_load_string(file_get_contents($this->filePath));
             $errors = libxml_get_errors();
             libxml_clear_errors();
             if (count($errors) > 0) {
@@ -58,7 +60,7 @@ class XmlFileReader
         return $life;
     }
 
-    private function validateXmlFile(\SimpleXMLElement $life)
+    private function validateXmlFile(SimpleXMLElement $life): void
     {
         if (!isset($life->world)) {
             throw new InvalidInputException("Missing element 'world'");
@@ -88,7 +90,7 @@ class XmlFileReader
         }
     }
 
-    private function readCells(\SimpleXMLElement $life, int $worldSize, int $speciesCount): array
+    private function readCells(SimpleXMLElement $life, int $worldSize, int $speciesCount): array
     {
         $cells = [];
         foreach ($life->organisms->organism as $organism) {
