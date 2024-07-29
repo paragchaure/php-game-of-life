@@ -8,13 +8,9 @@ class XmlFileWriter
 {
     private const OUTPUT_TEMPLATE = '/output-template.xml';
 
-    /** @var string */
-    private $filePath;
 
-
-    public function __construct(string $filePath)
+    public function __construct(private readonly string $filePath)
     {
-        $this->filePath = $filePath;
     }
 
 

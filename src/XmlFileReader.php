@@ -6,13 +6,8 @@ use SimpleXMLElement;
 
 class XmlFileReader
 {
-    /** @var string */
-    private $filePath;
-
-
-    public function __construct(string $filePath)
+    public function __construct(private readonly string $filePath)
     {
-        $this->filePath = $filePath;
     }
 
     public function loadFile(): array
@@ -54,7 +49,7 @@ class XmlFileReader
                 throw new InvalidInputException("Cannot read XML file");
             }
         }
-        catch (\Exception $e) {
+        catch (\Exception) {
             throw new InvalidInputException("Cannot read XML file");
         }
         return $life;
@@ -106,7 +101,7 @@ class XmlFileReader
             if ($species < 0 || $species >= $speciesCount) {
                 throw new InvalidInputException("Value of element 'species' of element 'organism' must be between 0 and maximal number of species");
             }
-            $cells[$y] = $cells[$y] ?? [];
+            $cells[$y] ??= [];
             $finalSpecies = $species;
             if (isset($cells[$y][$x])) {
                 $existingCell = $cells[$y][$x]; /** @var int $existingCell */
@@ -116,7 +111,7 @@ class XmlFileReader
             $cells[$y][$x] = $finalSpecies;
         }
         for ($y = 0; $y < $worldSize; $y++) {
-            $cells[$y] = $cells[$y] ?? [];
+            $cells[$y] ??= [];
             for ($x = 0; $x < $worldSize; $x++) {
                 if (!isset($cells[$y][$x])) {
                     $cells[$y][$x] = null;

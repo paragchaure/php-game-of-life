@@ -12,16 +12,13 @@ use function file_exists;
 use function range;
 use function unlink;
 
-class IntegrationTest extends TestCase
+final class IntegrationTest extends TestCase
 {
     private const OUTPUT_FILE = 'output.xml';
 
 
     /**
      * @dataProvider getInputAndExpectedOutputFiles
-     *
-     * @param string $inputFile
-     * @param string $expectedOutputFile
      */
     public function testGame(string $inputFile, string $expectedOutputFile): void
     {
@@ -49,12 +46,10 @@ class IntegrationTest extends TestCase
         $scenarios = range(1, 9);
 
         return array_map(
-            static function (int $scenario) {
-                return [
-                    __DIR__ . '/__fixtures__/scenario-' . $scenario . '/input.xml',
-                    __DIR__ . '/__fixtures__/scenario-' . $scenario . '/output.xml',
-                ];
-            },
+            static fn(int $scenario): array => [
+                __DIR__ . '/__fixtures__/scenario-' . $scenario . '/input.xml',
+                __DIR__ . '/__fixtures__/scenario-' . $scenario . '/output.xml',
+            ],
             $scenarios
         );
     }

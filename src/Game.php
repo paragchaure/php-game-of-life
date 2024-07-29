@@ -4,21 +4,18 @@ namespace Life;
 
 class Game
 {
-    /** @var int */
-    private $iterationsCount;
+    private int $iterationsCount;
 
-    /** @var int */
-    private $size;
+    private int $size;
 
-    /** @var int */
-    private $species;
+    private int $species;
 
     /**
      * @var int[][]|null[][]
      * Array of available cells in the game with size x size dimensions
      * Indexed by y coordinate and than x coordinate
      */
-    private $cells;
+    private array $cells;
 
     public function run(string $inputFile, string $outputFile): void
     {
