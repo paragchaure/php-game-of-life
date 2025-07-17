@@ -1,4 +1,5 @@
 {
+  "name": "paragchaure/php-game-of-life",
   "require": {
     "ext-simplexml": "*",
     "ext-dom": "*",
